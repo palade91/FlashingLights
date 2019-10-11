@@ -20,11 +20,46 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqR-R6-7DK">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="448"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="Wpo-pw-jAB">
+                                                <rect key="frame" x="364" y="172.5" width="40" height="103"/>
+                                                <subviews>
+                                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbP-O9-Xev">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="WXh-7h-dIx"/>
+                                                            <constraint firstAttribute="width" constant="40" id="mE5-jW-C7J"/>
+                                                        </constraints>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="plus" catalog="system">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fmo-HI-Naf">
+                                                        <rect key="frame" x="0.0" y="63" width="40" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="40" id="DKb-GQ-27E"/>
+                                                            <constraint firstAttribute="height" constant="40" id="aYX-DO-zL1"/>
+                                                        </constraints>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="stop.fill" catalog="system">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="stopTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hpm-RV-qQr"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="Wpo-pw-jAB" firstAttribute="centerY" secondItem="dqR-R6-7DK" secondAttribute="centerY" id="qpq-X4-JF1"/>
+                                        </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BjH-uS-hFF">
                                         <rect key="frame" x="0.0" y="448" width="414" height="448"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
                                 <gestureRecognizers/>
@@ -36,13 +71,15 @@
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="g46-jf-LAl" appends="YES" id="E2x-p9-Szt"/>
-                                    <outletCollection property="gestureRecognizers" destination="v6m-cK-nSC" appends="YES" id="2ih-pT-62Y"/>
+                                    <outletCollection property="gestureRecognizers" destination="s1Y-3V-ab3" appends="YES" id="FFp-gZ-hot"/>
+                                    <outletCollection property="gestureRecognizers" destination="XhD-eK-TpO" appends="YES" id="c52-Uz-2tC"/>
                                 </connections>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9TK-13-A3v" secondAttribute="trailing" id="TXx-En-0a7"/>
+                            <constraint firstItem="Wpo-pw-jAB" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-10" id="WoA-zZ-UIX"/>
                             <constraint firstItem="9TK-13-A3v" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dAV-2a-y5A"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="leading" secondItem="9TK-13-A3v" secondAttribute="leading" id="ydt-TF-YQb"/>
                             <constraint firstAttribute="bottom" secondItem="9TK-13-A3v" secondAttribute="bottom" id="yeM-T3-SBi"/>
@@ -50,7 +87,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="lbP-O9-Xev" id="bUO-Do-JNA"/>
                         <outlet property="bottomView" destination="BjH-uS-hFF" id="98S-ef-U79"/>
+                        <outlet property="stopButton" destination="Fmo-HI-Naf" id="lV7-sE-DI8"/>
                         <outlet property="topView" destination="dqR-R6-7DK" id="c0R-Cp-Ttv"/>
                     </connections>
                 </viewController>
@@ -60,9 +99,22 @@
                         <action selector="didTapOnScreen:" destination="BYZ-38-t0r" id="IZa-L3-A9s"/>
                     </connections>
                 </tapGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="v6m-cK-nSC"/>
+                <swipeGestureRecognizer direction="right" id="s1Y-3V-ab3">
+                    <connections>
+                        <action selector="swipeRight:" destination="BYZ-38-t0r" id="fca-3F-MhH"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="XhD-eK-TpO">
+                    <connections>
+                        <action selector="swipeLeft:" destination="BYZ-38-t0r" id="bzt-wD-Qss"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="plus" catalog="system" width="64" height="58"/>
+        <image name="stop.fill" catalog="system" width="64" height="56"/>
+    </resources>
 </document>

@@ -13,40 +13,100 @@ class ViewController: UIViewController {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
     
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
+    
     let standardTime: Double = 0.1
     
     var appTimer: Timer?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        topView.backgroundColor = .black
-        bottomView.backgroundColor = .black
-    }
-
-    @IBAction func didTapOnScreen(_ sender: UITapGestureRecognizer) {
-        
-        if sender.state == .ended {
-            flash(every: standardTime)
+    var toggle: Bool = true
+    
+    var colors: [[UIColor]] = [[UIColor.red, UIColor.blue], [UIColor.red], [UIColor.blue], [UIColor.orange]]
+    var index: Int = 0 {
+        didSet {
+            flash(every: standardTime, for: index)
         }
     }
     
-    func flash(every msec: Double) {
-        guard appTimer == nil else { return }
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        appTimer = Timer.scheduledTimer(withTimeInterval: msec, repeats: true) { timer in
-            
-            if self.topView.backgroundColor == .black || self.topView.backgroundColor == .white {
-                self.topView.backgroundColor = .red
-                self.bottomView.backgroundColor = .white
-            } else {
-                self.topView.backgroundColor = .white
-                self.bottomView.backgroundColor = .blue
+        setButtonsShadow()
+        view.backgroundColor = .black
+        
+        setViews(color1: colors[0][0], withAlpha: 1, color2: colors[0][1], withAlpha: 1)
+    }
+    
+    func setViews(color1: UIColor, withAlpha alpha1: CGFloat, color2: UIColor, withAlpha alpha2: CGFloat) {
+        
+        topView.backgroundColor = color1.withAlphaComponent(alpha1)
+        bottomView.backgroundColor = color2.withAlphaComponent(alpha2)
+    }
+    
+    @IBAction func stopTapped(_ sender: UIButton) {
+        guard let timer = appTimer else { return }
+        timer.invalidate()
+        appTimer = nil
+    }
+    
+    @IBAction func didTapOnScreen(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            flash(every: standardTime, for: index)
+        }
+    }
+    
+    // PREVIOUS
+    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
+        if sender.direction == .right {
+            if index > 0 {
+                index -= 1
             }
         }
     }
     
+    // NEXT
+    @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
+        if sender.direction == .left {
+            if index < colors.count {
+                index += 1
+            }
+        }
+    }
     
+    func flash(every msec: Double, for index: Int) {
+        guard appTimer == nil else { return }
+        appTimer = Timer.scheduledTimer(withTimeInterval: msec, repeats: true) { timer in
+            
+            if self.colors[index].count == 1 {
+                if self.toggle {
+                    self.topView.backgroundColor = self.colors[index][0].withAlphaComponent(1)
+                    self.bottomView.backgroundColor = self.colors[index][0].withAlphaComponent(1)
+                } else {
+                    self.topView.backgroundColor = self.colors[index][0].withAlphaComponent(0.1)
+                    self.bottomView.backgroundColor = self.colors[index][0].withAlphaComponent(0.1)
+                }
+            } else if self.colors[index].count == 2 {
+                if self.toggle {
+                    self.topView.backgroundColor = self.colors[index][0].withAlphaComponent(1)
+                    self.bottomView.backgroundColor = self.colors[index][1].withAlphaComponent(0.1)
+                } else {
+                    self.topView.backgroundColor = self.colors[index][0].withAlphaComponent(0.1)
+                    self.bottomView.backgroundColor = self.colors[index][1].withAlphaComponent(1)
+                }
+            }
+            self.toggle.toggle()
+        }
+    }
     
+    fileprivate func setButtonsShadow() {
+        addButton.layer.shadowColor = UIColor.gray.cgColor
+        addButton.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        addButton.layer.shadowRadius = 1.0
+        addButton.layer.shadowOpacity = 0.7
+        
+        stopButton.layer.shadowColor = UIColor.gray.cgColor
+        stopButton.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        stopButton.layer.shadowRadius = 1.0
+        stopButton.layer.shadowOpacity = 0.7
+    }
 }
-
