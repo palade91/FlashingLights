@@ -39,7 +39,6 @@ class ViewController: UIViewController {
     }
     
     func setViews(color1: UIColor, withAlpha alpha1: CGFloat, color2: UIColor, withAlpha alpha2: CGFloat) {
-        
         topView.backgroundColor = color1.withAlphaComponent(alpha1)
         bottomView.backgroundColor = color2.withAlphaComponent(alpha2)
     }
@@ -70,6 +69,11 @@ class ViewController: UIViewController {
                 index += 1
             }
         }
+    }
+    
+    @IBAction func addNewSetOfColors(_ sender: UIButton) {
+        let vc = AddSetVC()
+        self.present(vc, animated: true, completion: nil)
     }
     
     func flash(every msec: Double, for index: Int) {

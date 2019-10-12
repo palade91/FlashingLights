@@ -13,6 +13,7 @@
 		99E45D3E234F226D004E9667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99E45D3C234F226D004E9667 /* Main.storyboard */; };
 		99E45D40234F226E004E9667 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99E45D3F234F226E004E9667 /* Assets.xcassets */; };
 		99E45D43234F226E004E9667 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99E45D41234F226E004E9667 /* LaunchScreen.storyboard */; };
+		99E45D4B2351DEB7004E9667 /* AddSetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E45D4A2351DEB7004E9667 /* AddSetVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		99E45D3F234F226E004E9667 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99E45D42234F226E004E9667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99E45D44234F226E004E9667 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99E45D4A2351DEB7004E9667 /* AddSetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				99E45D36234F226D004E9667 /* AppDelegate.swift */,
 				99E45D38234F226D004E9667 /* SceneDelegate.swift */,
 				99E45D3A234F226D004E9667 /* ViewController.swift */,
+				99E45D4A2351DEB7004E9667 /* AddSetVC.swift */,
 				99E45D3C234F226D004E9667 /* Main.storyboard */,
 				99E45D3F234F226E004E9667 /* Assets.xcassets */,
 				99E45D41234F226E004E9667 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				99E45D3B234F226D004E9667 /* ViewController.swift in Sources */,
 				99E45D37234F226D004E9667 /* AppDelegate.swift in Sources */,
 				99E45D39234F226D004E9667 /* SceneDelegate.swift in Sources */,
+				99E45D4B2351DEB7004E9667 /* AddSetVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
