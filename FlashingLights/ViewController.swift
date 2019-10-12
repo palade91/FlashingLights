@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     var colors: [[UIColor]] = [[UIColor.red, UIColor.blue], [UIColor.red], [UIColor.blue], [UIColor.orange]]
     var index: Int = 0 {
         didSet {
+            stopTimer()
             flash(every: standardTime, for: index)
         }
     }
@@ -44,9 +45,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func stopTapped(_ sender: UIButton) {
-        guard let timer = appTimer else { return }
-        timer.invalidate()
-        appTimer = nil
+        stopTimer()
     }
     
     @IBAction func didTapOnScreen(_ sender: UITapGestureRecognizer) {
@@ -67,7 +66,7 @@ class ViewController: UIViewController {
     // NEXT
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
         if sender.direction == .left {
-            if index < colors.count {
+            if index < colors.count - 1 {
                 index += 1
             }
         }
@@ -96,6 +95,12 @@ class ViewController: UIViewController {
             }
             self.toggle.toggle()
         }
+    }
+    
+    fileprivate func stopTimer() {
+        guard let timer = appTimer else { return }
+        timer.invalidate()
+        appTimer = nil
     }
     
     fileprivate func setButtonsShadow() {
